@@ -21,11 +21,16 @@ rails new blog \
   -m https://raw.githubusercontent.com/etrex/rails-template/main/template.rb
 ```
 
+for local testing
+```
+rails new blog12 -f -T -d postgresql -m ~/Documents/github/etrex/rails-template/template.rb
+```
+
 # 安裝套件
 
+- Dotenv
 - Devise
 - Kamigo
-- Dotenv
 - RSpec
 - Pundit
 - Administrate
@@ -40,4 +45,3 @@ rails new blog \
 - Rollbar
 - Hotwire
 - annotate
-
