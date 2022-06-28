@@ -75,6 +75,8 @@ def install_gems
 
   # kamigo
   generate "kamigo:install"
+
+  generate "annotate:install"
 end
 
 # 建立用戶資料模型
