@@ -10,15 +10,15 @@
 使用的指令：
 
 ```
+-f
+-T
 -d postgresql
 -m https://raw.githubusercontent.com/etrex/rails-template/main/template.rb
 ```
 
 
 ```
-rails new blog \
-  -d postgresql \
-  -m https://raw.githubusercontent.com/etrex/rails-template/main/template.rb
+rails new blog18 -f -T -d postgresql -m https://raw.githubusercontent.com/etrex/rails-template/main/template.rb
 ```
 
 for local testing
