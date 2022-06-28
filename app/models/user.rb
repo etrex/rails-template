@@ -8,13 +8,21 @@ class User < ApplicationRecord
   has_many :oauth_providers
 
   def self.from_omniauth(auth)
-    if auth.provider == "line"
-      oauth_provider = OauthProvider.find_or_create_by(uid: auth.uid)
-      oauth_provider.name = auth.info.name
-      oauth_provider.user ||= User.create
-      oauth_provider.save
-      return oauth_provider.user
+    case auth.provider
+    when "line"
+      Users::FindOrCreateFromLine.new(name: auth.info.name, line_id: auth.uid).run
+    else
+      nil
     end
+  end
+
+  def self.from_kamigo(params)
+    return nil unless params[:platform_type].present?   &&
+      params[:source_type].present?     &&
+      params[:source_group_id].present? &&
+      params[:source_user_id].present?
+
+    Users::FindOrCreateFromLine.new(name:  params.dig(:profile, :displayName), line_id: params[:source_user_id]).run
   end
 
   def email_required?
@@ -23,5 +31,9 @@ class User < ApplicationRecord
 
   def password_required?
     false
+  end
+
+  def name
+    oauth_providers.last&.name || ''
   end
 end

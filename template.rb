@@ -62,6 +62,8 @@ end
 def setup_config_application
   # 設定時區
   environment 'config.time_zone = "Taipei"'
+  environment 'config.hosts << "ngrok.etrex.tw"'
+
 end
 
 def install_gems
@@ -101,7 +103,6 @@ def copy_files
   insert_into_file "app/views/layouts/application.html.erb", '<%= render "layouts/nav" %>', after: "<body>\n"
   copy_file "config/initializers/line_login.rb"
   copy_file "config/routes.rb"
-
 end
 
 def setup_admin
