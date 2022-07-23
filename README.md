@@ -18,13 +18,37 @@
 
 
 ```
-rails new blog18 -f -T -d postgresql -m https://raw.githubusercontent.com/etrex/rails-template/main/template.rb
+rails new blog21 -f -T -d postgresql -m https://raw.githubusercontent.com/etrex/rails-template/main/template.rb
 ```
 
-for local testing
+
+# 試用
+
+1. 建立專案
+
 ```
-rails new blog12 -f -T -d postgresql -m ~/Documents/github/etrex/rails-template/template.rb
+rails new blog21 -f -T -d postgresql -m https://raw.githubusercontent.com/etrex/rails-template/main/template.rb
 ```
+
+2. 設定環境變數
+
+3. rails s
+
+4. 開啟 ngrok 以獲得可串接 LINE Messaging API 以及 LINE Login 的 https + 臨時 domain
+
+5. 查看前台、後台、以及 LINE Bot
+
+6. 關掉 server，使用 scaffold 建立一組資源：
+
+```
+rails g scaffold todos title desc
+rails db:migrate
+rails generate administrate:dashboard Todo
+```
+
+在 rails routes 的 admin 下新增一條 resources :todos
+
+7. 再次查看前台、後台、以及 LINE Bot
 
 # 安裝套件
 

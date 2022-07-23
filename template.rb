@@ -117,6 +117,23 @@ def setup_admin
   append_to_file "app/assets/config/manifest.js", "\n//= link administrate-field-nested_has_many/application.css"
 end
 
+def setup_liff_js
+  append_to_file "app/javascript/packs/application.js", '
+/* kamiliff default behavior */
+window.addEventListener("liff_ready", function(event){
+  register_kamiliff_submit();
+});
+
+window.addEventListener("liff_submit", function(event){
+  var json = JSON.stringify(event.detail.data);
+  var url = event.detail.url;
+  var method = event.detail.method;
+  var request_text = method + " " + url + "\n" + json;
+  liff_send_text_message(request_text);
+});
+'
+end
+
 def rails_new
   add_gems
   after_bundle do
@@ -124,6 +141,7 @@ def rails_new
     setup_model
     setup_config_application
     copy_files
+    setup_liff_js
     setup_admin
   end
 end
