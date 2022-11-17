@@ -43,7 +43,7 @@ def add_gems
   # features
   gem "dotenv-rails"
   gem "devise"
-  gem 'omniauth-line', git: 'git@github.com:etrex/omniauth-line.git'
+  gem 'omniauth-line', git: 'https://github.com/etrex/omniauth-line.git'
   gem "kamigo"
   gem "pundit"
 
