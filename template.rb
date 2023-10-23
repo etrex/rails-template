@@ -150,6 +150,15 @@ window.addEventListener("liff_submit", function(event){
 '
 end
 
+def setup_css
+  puts "== setup_css =="
+  append_to_file "app/assets/stylesheets/application.css", '
+.inline-form {
+  display: inline;
+}
+'
+end
+
 def rails_new
   add_gems
   after_bundle do
@@ -158,6 +167,7 @@ def rails_new
     setup_config_application
     copy_files
     setup_liff_js
+    setup_css
     setup_admin
   end
 end
