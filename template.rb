@@ -26,6 +26,8 @@ end
 
 # 新增 gem 到應用程式的 Gemfile
 def add_gems
+  puts "== add_gems =="
+
   # code quality
   gem "rollbar"
 
@@ -60,6 +62,8 @@ end
 # 新增程式到 config/application.rb。
 # 若有指定環境 options[:env]，則程式會加到 config/environments 下對應的環境設定檔裡。
 def setup_config_application
+  puts "== setup_config_application =="
+
   # 設定時區
   environment 'config.time_zone = "Taipei"'
   environment 'config.hosts << "ngrok.etrex.tw"'
@@ -67,6 +71,8 @@ def setup_config_application
 end
 
 def install_gems
+  puts "== install_gems =="
+
   generate "devise:install"
 
   generate "rspec:install"
@@ -81,6 +87,7 @@ end
 
 # 建立用戶資料模型
 def setup_model
+  puts "== setup_model =="
   # 用戶
   generate :devise, :user
 
@@ -88,28 +95,35 @@ def setup_model
   generate :model, "oauth_provider provider name uid user:references"
 
   # 建立資料庫
+  rake "db:drop"
   rake "db:create"
   rake "db:migrate"
 end
 
 # 複製檔案
 def copy_files
+  puts "== copy_files =="
+
   add_template_repository_to_source_path
   copy_file "env", ".env"
   copy_file "app/controllers/application_controller.rb"
   copy_file "app/controllers/home_controller.rb"
   copy_file "app/controllers/omniauth_callbacks_controller.rb"
+  copy_file "app/helpers/application_helper.rb"
   copy_file "app/models/user.rb"
   copy_file "app/services/users/find_or_create_from_line.rb"
   copy_file "app/views/home/index.html.erb"
   copy_file "app/views/home/index.line.erb"
   copy_file "app/views/layouts/_nav.html.erb"
+  copy_file "app/views/layouts/liff.html.erb"
   insert_into_file "app/views/layouts/application.html.erb", '<%= render "layouts/nav" %>', after: "<body>\n"
   copy_file "config/initializers/line_login.rb"
   copy_file "config/routes.rb"
 end
 
 def setup_admin
+  puts "== setup_admin =="
+
   generate "administrate:install"
 
   # append to app/assets/config/manifest.js
@@ -118,7 +132,9 @@ def setup_admin
 end
 
 def setup_liff_js
-  append_to_file "app/javascript/packs/application.js", '
+  puts "== setup_liff_js =="
+
+  append_to_file "app/javascript/application.js", '
 /* kamiliff default behavior */
 window.addEventListener("liff_ready", function(event){
   register_kamiliff_submit();
