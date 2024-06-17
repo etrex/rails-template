@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= display_meta_tags site: 服務名稱 %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="<%= meta_description %>">
+    <meta name="keywords" content="<%= meta_keywords %>">
+
+    <link rel="icon" type="image/png" sizes="128x128" href="/images/logo-128.png">
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <!-- Bootstrap JS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <%= render "layouts/nav" %>
+
+    <!-- notice -->
+    <%= render "layouts/notice" %>
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+      <div class="row">
+        <%= yield %>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <%= render "layouts/footer" %>
+  </body>
+</html>

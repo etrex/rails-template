@@ -57,6 +57,9 @@ def add_gems
   gem "administrate_exportable"
 
   gem "omniauth-rails_csrf_protection"
+
+  # SEO
+  gem "meta-tags"
 end
 
 # 新增程式到 config/application.rb。
@@ -114,11 +117,20 @@ def copy_files
   copy_file "app/services/users/find_or_create_from_line.rb"
   copy_file "app/views/home/index.html.erb"
   copy_file "app/views/home/index.line.erb"
+  copy_file "app/views/home/terms.html.erb"
+  copy_file "app/views/home/about.html.erb"
+  copy_file "app/views/home/privacy.html.erb"
   copy_file "app/views/layouts/_nav.html.erb"
   copy_file "app/views/layouts/liff.html.erb"
+  copy_file "app/views/layouts/application.html.erb"
+  copy_file "app/views/layouts/_footer.html.erb"
+  copy_file "app/views/layouts/_notice.html.erb"
   insert_into_file "app/views/layouts/application.html.erb", '<%= render "layouts/nav" %>', after: "<body>\n"
   copy_file "config/initializers/line_login.rb"
   copy_file "config/routes.rb"
+
+  # css
+  copy_file "app/assets/stylesheets/application.css"
 end
 
 def setup_admin
@@ -150,15 +162,6 @@ window.addEventListener("liff_submit", function(event){
 '
 end
 
-def setup_css
-  puts "== setup_css =="
-  append_to_file "app/assets/stylesheets/application.css", '
-.inline-form {
-  display: inline;
-}
-'
-end
-
 def rails_new
   add_gems
   after_bundle do
@@ -167,7 +170,6 @@ def rails_new
     setup_config_application
     copy_files
     setup_liff_js
-    setup_css
     setup_admin
   end
 end
