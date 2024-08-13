@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
+  get 'sitemap.xml', to: 'sitemaps#index', format: :xml
+  get 'sitemap_:type_:page.xml', to: 'sitemaps#show', format: :xml, constraints: { type: /main|articles_\d+|words_\d+/ }
+
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+
   root to: "home#index"
   get :index, to: "home#index"
 

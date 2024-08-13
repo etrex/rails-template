@@ -60,6 +60,7 @@ def add_gems
 
   # SEO
   gem "meta-tags"
+  gem "gpt-function"
 end
 
 # 新增程式到 config/application.rb。
@@ -108,29 +109,37 @@ def copy_files
   puts "== copy_files =="
 
   add_template_repository_to_source_path
-  copy_file "env", ".env"
+  copy_file "app/assets/stylesheets/application.css"
+  copy_file "app/controllers/admin/application_controller.rb"
   copy_file "app/controllers/application_controller.rb"
   copy_file "app/controllers/home_controller.rb"
   copy_file "app/controllers/omniauth_callbacks_controller.rb"
+  copy_file "app/controllers/sitemaps_controller.rb"
+
   copy_file "app/helpers/application_helper.rb"
   copy_file "app/models/user.rb"
+  copy_file "app/services/batchs/process.rb"
+  copy_file "app/services/batchs/index_now_service.rb"
   copy_file "app/services/users/find_or_create_from_line.rb"
   copy_file "app/views/home/index.html.erb"
   copy_file "app/views/home/index.line.erb"
   copy_file "app/views/home/terms.html.erb"
   copy_file "app/views/home/about.html.erb"
   copy_file "app/views/home/privacy.html.erb"
-  copy_file "app/views/layouts/_nav.html.erb"
-  copy_file "app/views/layouts/liff.html.erb"
-  copy_file "app/views/layouts/application.html.erb"
   copy_file "app/views/layouts/_footer.html.erb"
+  copy_file "app/views/layouts/_ga.html.erb"
+  copy_file "app/views/layouts/_lazy_load_script.html.erb"
+  copy_file "app/views/layouts/_nav.html.erb"
   copy_file "app/views/layouts/_notice.html.erb"
-  insert_into_file "app/views/layouts/application.html.erb", '<%= render "layouts/nav" %>', after: "<body>\n"
+  copy_file "app/views/layouts/application.html.erb"
+  copy_file "app/views/layouts/liff.html.erb"
+  copy_file "config/initializers/gpt.rb"
   copy_file "config/initializers/line_login.rb"
+  copy_file "config/initializers/slack.rb"
   copy_file "config/routes.rb"
-
-  # css
-  copy_file "app/assets/stylesheets/application.css"
+  copy_file "lib/tasks/auto_process.rake"
+  copy_file "env", ".env"
+  copy_file "Procfile", "Procfile"
 end
 
 def setup_admin

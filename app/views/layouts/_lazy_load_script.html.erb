@@ -1,0 +1,18 @@
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var script = document.createElement("script");
+    script.src = "<%= src %>";
+
+    <% if local_assigns[:crossorigin] && crossorigin == "anonymous" %>
+      script.crossorigin = "anonymous";
+    <% end %>
+
+    script.defer = true;
+
+    script.onload = function() {
+      <%= raw yield %>
+    };
+
+    document.body.appendChild(script);
+  });
+</script>
