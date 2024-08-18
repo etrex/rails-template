@@ -118,7 +118,6 @@ def copy_files
 
   add_template_repository_to_source_path
   copy_file "app/assets/stylesheets/application.css"
-  copy_file "app/controllers/admin/application_controller.rb"
   copy_file "app/controllers/application_controller.rb"
   copy_file "app/controllers/home_controller.rb"
   copy_file "app/controllers/omniauth_callbacks_controller.rb"
@@ -154,6 +153,7 @@ def setup_admin
   puts "== setup_admin =="
 
   generate "administrate:install"
+  copy_file "app/controllers/admin/application_controller.rb"
 
   # append to app/assets/config/manifest.js
   append_to_file "app/assets/config/manifest.js", "\n//= link administrate-field-nested_has_many/application.js"
