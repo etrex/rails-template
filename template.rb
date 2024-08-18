@@ -58,9 +58,17 @@ def add_gems
 
   gem "omniauth-rails_csrf_protection"
 
+  gem "bootstrap5-kaminari-views"
+
   # SEO
   gem "meta-tags"
+  gem "sitemap_generator"
+
+  # content
   gem "gpt-function"
+
+  # slack
+  gem "slack-ruby-client"
 end
 
 # 新增程式到 config/application.rb。
