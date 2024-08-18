@@ -119,7 +119,7 @@ def copy_files
   copy_file "app/helpers/application_helper.rb"
   copy_file "app/models/user.rb"
   copy_file "app/services/batchs/process.rb"
-  copy_file "app/services/batchs/index_now_service.rb"
+  copy_file "app/services/index_now_service.rb"
   copy_file "app/services/users/find_or_create_from_line.rb"
   copy_file "app/views/home/index.html.erb"
   copy_file "app/views/home/index.line.erb"
